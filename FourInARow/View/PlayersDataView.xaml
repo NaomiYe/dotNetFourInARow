@@ -1,0 +1,41 @@
+﻿<Window x:Class="FourInARow.View.PlayersDataView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FourInARow.View"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="PlayersDataView" Height="200" Width="300">
+    <Grid Background="DodgerBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="Plum">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Player 1 Name: " VerticalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding LocalPlayersData.Player1Name, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" MaxLength="15" VerticalAlignment="Center" Margin="10" />
+            <Label Grid.Row="0" Grid.Column="2" Content="Human" VerticalAlignment="Center" Margin="10"/>
+            <Label Grid.Row="1" Grid.Column="0" Content="Player 2 Name: " VerticalAlignment="Center" Margin="10"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LocalPlayersData.Player2Name, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" MaxLength="15" VerticalAlignment="Center"  Margin="10"/>
+            <!--This is for future using, it can be implemented when adding the machine
+            playing engine (Minimax or AlphaBeta alegorithem).-->
+            <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                <RadioButton GroupName="PlayerType" Content="Human" IsChecked="True"/>
+                <RadioButton GroupName="PlayerType" Content="Machine" IsEnabled="False" />
+            </StackPanel>
+        </Grid>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Save" Margin="20,10" Width="75" Command="{Binding Commands[SavePlayersData]}" Click="Button_Click" />
+            <Button Content="Cancel" Margin="20,10" Width="75" Command="{Binding Commands[CancelSavePlayersData]}" Click="Cancel_Click"/>
+        </WrapPanel>
+    </Grid>
+</Window>
